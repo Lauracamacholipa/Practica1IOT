@@ -56,3 +56,102 @@ El sistema electrónico fue representado mediante un diagrama esquemático elabo
 
 Para la medición de distancia se emplea el sensor ultrasónico HC-SR04, el cual se conecta al microcontrolador mediante cuatro terminales.Asimismo, el sistema incluye tres diodos emisores de luz (LED) utilizados como indicadores visuales del rango de distancia detectado. Cada LED se conecta a un pin de salida digital del microcontrolador y se encuentra en serie con una resistencia de 200 Ω, cuya función es limitar la corriente que circula por el diodo para evitar su deterioro.
 <img width="688" height="426" alt="image" src="https://github.com/user-attachments/assets/6ccbc779-8cfa-4669-8d35-0155c89208b1" />
+
+# **4. Pruebas y Validaciones**
+
+## 4.1. Objetivo de las pruebas
+
+El objetivo de las pruebas es verificar que el sistema desarrollado cumple con los requerimientos funcionales definidos, evaluando:
+
+- la **precisión de medición del sensor ultrasónico**
+- la **correcta clasificación de los rangos de distancia**
+- la **activación adecuada de los LEDs según la distancia detectada**
+
+## 4.2. Metodología de pruebas
+
+Las pruebas se realizaron utilizando el prototipo implementado con el microcontrolador y el sensor ultrasónico.
+
+El procedimiento seguido fue:
+
+1. Colocar un objeto frente al sensor ultrasónico.
+2. Medir la distancia real utilizando una regla.
+3. Registrar la distancia medida por el sensor mostrada en el monitor serial.
+4. Registrar el LED activado por el sistema.
+5. Comparar los resultados con los valores esperados.
+
+Se realizaron 30 mediciones experimentales, distribuidas en los tres rangos definidos en el sistema:
+
+| Rango de distancia | LED esperado |
+| --- | --- |
+| < 30 cm | Rojo |
+| 30 - 100 cm | Amarillo |
+| > 100 cm | Verde |
+
+## 4.3 Registro de mediciones
+
+Durante las pruebas se obtuvieron las siguientes mediciones experimentales.
+
+<img width="572" height="667" alt="image" src="https://github.com/user-attachments/assets/5d00a24b-34cf-449c-8a74-93bc0713eeb3" />
+
+
+# **5. Resultados**
+
+En esta sección se analizan los datos obtenidos durante las pruebas experimentales realizadas al sistema de medición de distancia con sensor ultrasónico.
+
+A partir de las 30 mediciones realizadas, se calcularon los valores de error absoluto y error porcentual comparando la distancia real con la distancia medida por el sensor.
+
+Los resultados muestran que el sistema presenta un error absoluto promedio de aproximadamente 1.46 cm y un error porcentual promedio cercano al 2.23 %.
+
+Se observó que la diferencia entre la distancia real y la distancia medida aumenta ligeramente a distancias mayores, lo cual es un comportamiento esperado en sensores ultrasónicos debido a factores como la dispersión de la onda ultrasónica y las condiciones del entorno.
+
+En cuanto al funcionamiento del sistema de clasificación por rangos de distancia, los resultados obtenidos fueron:
+
+- Rango cercano (< 30 cm): activación correcta del LED rojo en todas las pruebas.
+- Rango medio (30 – 100 cm): activación correcta del LED amarillo en todas las pruebas.
+- Rango lejano (> 100 cm): activación correcta del LED verde en todas las pruebas.
+
+Durante las 30 pruebas realizadas, el LED observado coincidió con el LED esperado en todos los casos, lo que representa un 100 % de precisión en la clasificación de distancias.
+
+Estos resultados indican que el sistema funciona correctamente y cumple con los requerimientos funcionales establecidos para la medición y señalización de distancias.
+
+# **6. Conclusiones**
+
+A partir del desarrollo e implementación del sistema de medición de distancia utilizando un sensor ultrasónico y un microcontrolador, se puede concluir que el sistema cumple satisfactoriamente con los objetivos planteados al inicio del proyecto.
+
+Las pruebas experimentales realizadas permitieron verificar el correcto funcionamiento del sensor y del algoritmo de medición, obteniendo un error promedio de aproximadamente 1.46 cm, lo cual se encuentra dentro de un rango aceptable para este tipo de sensores.
+
+Asimismo, el sistema de señalización mediante LEDs demostró un funcionamiento correcto, activando el indicador correspondiente según el rango de distancia detectado. Durante las pruebas realizadas se obtuvo una coincidencia del 100 % entre el LED esperado y el LED observado.
+
+Los resultados obtenidos demuestran que el sistema es capaz de medir distancias dentro del rango de operación establecido y clasificar correctamente dichas distancias mediante señales visuales, cumpliendo con los requerimientos funcionales definidos para el proyecto.
+
+Finalmente, este proyecto permitió aplicar conceptos de programación de microcontroladores, adquisición de datos mediante sensores y validación experimental de sistemas electrónicos, fortaleciendo el aprendizaje práctico en el área de sistemas embebidos.
+
+# **7. Recomendaciones**
+
+A partir de los resultados obtenidos durante las pruebas del sistema, se proponen las siguientes recomendaciones para mejorar su desempeño y facilitar futuras implementaciones:
+
+- Realizar calibraciones periódicas del sensor ultrasónico para reducir el error en las mediciones, especialmente en distancias mayores.
+- Implementar un filtrado de datos, como el promedio de varias mediciones consecutivas, para disminuir las variaciones causadas por ruido o interferencias en la señal ultrasónica.
+- Asegurar una correcta alineación del sensor con el objeto medido, ya que superficies inclinadas o irregulares pueden afectar la precisión de la medición.
+- Evitar obstáculos o interferencias cercanas al sensor, debido a que pueden generar reflexiones adicionales de la señal ultrasónica y afectar los resultados.
+- Considerar el uso de sensores de mayor precisión o mayor rango de medición en aplicaciones donde se requiera una exactitud más alta.
+
+Estas recomendaciones pueden contribuir a mejorar la estabilidad, precisión y confiabilidad del sistema en aplicaciones futuras.
+
+# **8. Anexos**
+
+### **Anexo A — Registro completo de pruebas experimentales**
+
+Excel donde se realizaron las 30 pruebas: https://docs.google.com/spreadsheets/d/1x_vcMCgnQGTEoDCdiTcxhVuf3NxjOjMr1PYVerR19v0/edit?usp=sharing 
+
+### **Anexo B — Fotografías del prototipo experimental**
+
+**Figura B1. Prototipo del sistema**
+<img width="521" height="1156" alt="image" src="https://github.com/user-attachments/assets/d8ca3127-228e-466c-a25f-e6e52fda6d0d" />
+
+<img width="521" height="721" alt="image" src="https://github.com/user-attachments/assets/ef867b12-8eff-4214-bd3e-ae3f1f38a690" />
+
+
+**Figura B2. Prototipo del sistema durante las pruebas experimentales**
+<img width="1156" height="521" alt="image" src="https://github.com/user-attachments/assets/87551caf-a192-4d0d-90da-2850f5d54f27" />
+
