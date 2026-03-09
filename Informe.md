@@ -18,11 +18,11 @@
 
 ## 1.1. Requerimientos funcionales
 
-**RF01:** El sistema será capaz de medir la distancia entre el sensor ultrasónico y un objeto ubicado frente a él dentro del rango de 2 cm a 200 cm.
+**RF01:** El sistema será capaz de medir la distancia entre el sensor ultrasónico y un objeto ubicado frente a él dentro del rango de 2 cm a 150 cm.
 
-**RF02:** El sistema será capaz de clasificar correctamente la distancia medida en tres rangos definidos (<30 cm, 30–100 cm y ≥100 cm) con una precisión mínima del 90%.
+**RF02:** El sistema será capaz de clasificar correctamente la distancia medida en tres rangos definidos (<30 cm, 30–100 cm y ≥100 cm).
 
-**RF03:** El sistema será capaz de activar el LED correspondiente al rango de distancia detectado con una tasa de activación correcta mínima del 95%.
+**RF03:** El sistema será capaz de activar el LED correspondiente al rango de distancia detectado.
 
 | <30 cm | LED Rojo |
 | --- | --- |
@@ -47,11 +47,144 @@
 
 El diagrama de bloques muestra la interacción general entre los componentes principales del sistema, incluyendo el sensor ultrasónico, el microcontrolador y los actuadores representados por los LEDs.
 
-![Sensor.png](attachment:2b058d79-32d3-4712-94a1-87b555a25612:Sensor.png)
+<img width="755" height="130" alt="image" src="https://github.com/user-attachments/assets/363688c5-c026-4bce-a089-12b08382de92" />
+
 
 ### 2.2. Diagrama de circuito
 
 El sistema electrónico fue representado mediante un diagrama esquemático elaborado en el software KiCad, donde se muestran las interconexiones entre el microcontrolador, el sensor ultrasónico y los elementos de señalización visual. El núcleo del circuito está constituido por el módulo ESP32-WROOM-32, el cual actúa como unidad de procesamiento y control del sistema.
 
 Para la medición de distancia se emplea el sensor ultrasónico HC-SR04, el cual se conecta al microcontrolador mediante cuatro terminales.Asimismo, el sistema incluye tres diodos emisores de luz (LED) utilizados como indicadores visuales del rango de distancia detectado. Cada LED se conecta a un pin de salida digital del microcontrolador y se encuentra en serie con una resistencia de 200 Ω, cuya función es limitar la corriente que circula por el diodo para evitar su deterioro.
-![image.png](attachment:0b5bc234-7592-4767-b0f1-a7689a24dac0:b3a6b9ea-1ab6-4b94-be5d-215cd7247ad3.png)
+<img width="688" height="426" alt="image" src="https://github.com/user-attachments/assets/6ccbc779-8cfa-4669-8d35-0155c89208b1" />
+
+### 2.3. Diagrama de arquitectura del sistema
+
+El sensor HC-SR04 mide el tiempo de retorno del eco, el microcontrolador Arduino calcula la distancia y clasifica el resultado en uno de los tres rangos definidos, activando el LED correspondiente para indicar visualmente la distancia detectada.
+
+<img width="328" height="609" alt="image" src="https://github.com/user-attachments/assets/4fed952b-da96-4e76-87c3-434cfd4fa0ec" />
+
+### 2.4. Diagramas estructurales y de comportamiento
+
+El diagrama estructural muestra los componentes principales del sistema: el sensor ultrasónico HC-SR04 encargado de medir la distancia, el microcontrolador Arduino responsable del procesamiento de los datos y la clasificación del rango de distancia, y el sistema de LEDs que indica visualmente el resultado de la medición
+
+<img width="304" height="396" alt="image" src="https://github.com/user-attachments/assets/56e4d8cb-8133-4553-9cb8-dce51ddc759e" />
+
+Diagrama de comportamiento del algoritmo de medición y clasificación de distancia.
+
+<img width="635" height="568" alt="image" src="https://github.com/user-attachments/assets/6b70d67b-002a-46f8-9819-664fafb7eb46" />
+
+# **3. Implementación**
+
+El sistema fue implementado utilizando el microcontrolador Arduino y programado en el entorno **Arduino IDE**, empleando el lenguaje **C++**.
+
+El diseño del software se estructuró de manera modular mediante el uso de clases, separando las responsabilidades del sistema en los siguientes componentes:
+
+- **Clase `UltrasonicSensor`**: responsable de la lectura y filtrado de las mediciones del sensor ultrasónico.
+- **Clase `Led`**: encargada de controlar el encendido, apagado y parpadeo de los LEDs.
+- **Clase `DistanceController`**: implementa la lógica de clasificación de distancias y la activación de los actuadores.
+- **Archivo principal `main.ino`**: inicializa el sistema y ejecuta el ciclo principal de control.
+
+Durante la ejecución del programa, el microcontrolador realiza lecturas periódicas del sensor ultrasónico, calcula la distancia al objeto y clasifica el valor obtenido dentro de los rangos definidos. En función del rango detectado, el sistema activa el LED correspondiente para indicar visualmente la distancia medida.
+
+El código fuente completo del proyecto se encuentra disponible en el repositorio del proyecto.
+
+# **4. Pruebas y Validaciones**
+
+## 4.1. Objetivo de las pruebas
+
+El objetivo de las pruebas es verificar que el sistema desarrollado cumple con los requerimientos funcionales definidos, evaluando:
+
+- la **precisión de medición del sensor ultrasónico**
+- la **correcta clasificación de los rangos de distancia**
+- la **activación adecuada de los LEDs según la distancia detectada**
+
+## 4.2. Metodología de pruebas
+
+Las pruebas se realizaron utilizando el prototipo implementado con el microcontrolador y el sensor ultrasónico.
+
+El procedimiento seguido fue:
+
+1. Colocar un objeto frente al sensor ultrasónico.
+2. Medir la distancia real utilizando una regla.
+3. Registrar la distancia medida por el sensor mostrada en el monitor serial.
+4. Registrar el LED activado por el sistema.
+5. Comparar los resultados con los valores esperados.
+
+Se realizaron 30 mediciones experimentales, distribuidas en los tres rangos definidos en el sistema:
+
+| Rango de distancia | LED esperado |
+| --- | --- |
+| < 30 cm | Rojo |
+| 30 - 100 cm | Amarillo |
+| > 100 cm | Verde |
+
+## 4.3 Registro de mediciones
+
+Durante las pruebas se obtuvieron las siguientes mediciones experimentales.
+
+<img width="572" height="667" alt="image" src="https://github.com/user-attachments/assets/5d00a24b-34cf-449c-8a74-93bc0713eeb3" />
+
+Durante las pruebas iniciales se intentó utilizar a los propios integrantes del equipo como objetos de referencia frente al sensor ultrasónico. Sin embargo, se observó que las mediciones no eran estables debido a que el material textil de la ropa absorbía parcialmente la onda ultrasónica o generaba reflexiones irregulares. Como resultado, el eco recibido por el sensor no era consistente. Por esta razón, se decidió utilizar objetos sólidos y superficies más uniformes durante las mediciones experimentales para garantizar mayor precisión en los resultados
+
+# **5. Resultados**
+
+En esta sección se analizan los datos obtenidos durante las pruebas experimentales realizadas al sistema de medición de distancia con sensor ultrasónico.
+
+A partir de las 30 mediciones realizadas, se calcularon los valores de error absoluto y error porcentual comparando la distancia real con la distancia medida por el sensor.
+
+Los resultados muestran que el sistema presenta un error absoluto promedio de aproximadamente 1.46 cm y un error porcentual promedio cercano al 2.23 %.
+
+Se observó que la diferencia entre la distancia real y la distancia medida aumenta ligeramente a distancias mayores, lo cual es un comportamiento esperado en sensores ultrasónicos debido a factores como la dispersión de la onda ultrasónica y las condiciones del entorno.
+
+En cuanto al funcionamiento del sistema de clasificación por rangos de distancia, los resultados obtenidos fueron:
+
+- Rango cercano (< 30 cm): activación correcta del LED rojo en todas las pruebas.
+- Rango medio (30 – 100 cm): activación correcta del LED amarillo en todas las pruebas.
+- Rango lejano (> 100 cm): activación correcta del LED verde en todas las pruebas.
+
+Durante las 30 pruebas realizadas, el LED observado coincidió con el LED esperado en todos los casos, lo que representa un 100 % de precisión en la clasificación de distancias.
+
+Estos resultados indican que el sistema funciona correctamente y cumple con los requerimientos funcionales establecidos para la medición y señalización de distancias.
+
+# **6. Conclusiones**
+
+A partir del desarrollo e implementación del sistema de medición de distancia utilizando un sensor ultrasónico y un microcontrolador, se puede concluir que el sistema cumple satisfactoriamente con los objetivos planteados al inicio del proyecto.
+
+Las pruebas experimentales realizadas permitieron verificar el correcto funcionamiento del sensor y del algoritmo de medición, obteniendo un error promedio de aproximadamente 1.46 cm, lo cual se encuentra dentro de un rango aceptable para este tipo de sensores.
+
+Asimismo, el sistema de señalización mediante LEDs demostró un funcionamiento correcto, activando el indicador correspondiente según el rango de distancia detectado. Durante las pruebas realizadas se obtuvo una coincidencia del 100 % entre el LED esperado y el LED observado.
+
+Los resultados obtenidos demuestran que el sistema es capaz de medir distancias dentro del rango de operación establecido y clasificar correctamente dichas distancias mediante señales visuales, cumpliendo con los requerimientos funcionales definidos para el proyecto.
+
+Finalmente, este proyecto permitió aplicar conceptos de programación de microcontroladores, adquisición de datos mediante sensores y validación experimental de sistemas electrónicos, fortaleciendo el aprendizaje práctico en el área de sistemas embebidos.
+
+# **7. Recomendaciones**
+
+A partir de los resultados obtenidos durante las pruebas del sistema, se proponen las siguientes recomendaciones para mejorar su desempeño y facilitar futuras implementaciones:
+
+- Realizar calibraciones periódicas del sensor ultrasónico para reducir el error en las mediciones, especialmente en distancias mayores.
+- Implementar un filtrado de datos, como el promedio de varias mediciones consecutivas, para disminuir las variaciones causadas por ruido o interferencias en la señal ultrasónica.
+- Asegurar una correcta alineación del sensor con el objeto medido, ya que superficies inclinadas o irregulares pueden afectar la precisión de la medición.
+- Evitar obstáculos o interferencias cercanas al sensor, debido a que pueden generar reflexiones adicionales de la señal ultrasónica y afectar los resultados.
+- Considerar el uso de sensores de mayor precisión o mayor rango de medición en aplicaciones donde se requiera una exactitud más alta.
+- Utilizar objetos con superficies sólidas y relativamente lisas durante las mediciones, ya que materiales blandos o textiles pueden absorber parcialmente la onda ultrasónica o dispersar el eco, reduciendo la estabilidad y precisión de las lecturas del sensor.
+
+Estas recomendaciones pueden contribuir a mejorar la estabilidad, precisión y confiabilidad del sistema en aplicaciones futuras.
+
+# **8. Anexos**
+
+### **Anexo A — Registro completo de pruebas experimentales**
+
+Excel donde se realizaron las 30 pruebas: https://docs.google.com/spreadsheets/d/1x_vcMCgnQGTEoDCdiTcxhVuf3NxjOjMr1PYVerR19v0/edit?usp=sharing 
+
+### **Anexo B — Fotografías del prototipo experimental**
+
+**Figura B1. Prototipo del sistema**
+<img width="521" height="1156" alt="image" src="https://github.com/user-attachments/assets/d8ca3127-228e-466c-a25f-e6e52fda6d0d" />
+
+<img width="521" height="721" alt="image" src="https://github.com/user-attachments/assets/ef867b12-8eff-4214-bd3e-ae3f1f38a690" />
+
+
+**Figura B2. Prototipo del sistema durante las pruebas experimentales**
+<img width="1156" height="521" alt="image" src="https://github.com/user-attachments/assets/87551caf-a192-4d0d-90da-2850f5d54f27" />
+
