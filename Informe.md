@@ -47,11 +47,12 @@
 
 El diagrama de bloques muestra la interacción general entre los componentes principales del sistema, incluyendo el sensor ultrasónico, el microcontrolador y los actuadores representados por los LEDs.
 
-![Sensor.png](attachment:2b058d79-32d3-4712-94a1-87b555a25612:Sensor.png)
+<img width="755" height="130" alt="image" src="https://github.com/user-attachments/assets/363688c5-c026-4bce-a089-12b08382de92" />
+
 
 ### 2.2. Diagrama de circuito
 
 El sistema electrónico fue representado mediante un diagrama esquemático elaborado en el software KiCad, donde se muestran las interconexiones entre el microcontrolador, el sensor ultrasónico y los elementos de señalización visual. El núcleo del circuito está constituido por el módulo ESP32-WROOM-32, el cual actúa como unidad de procesamiento y control del sistema.
 
 Para la medición de distancia se emplea el sensor ultrasónico HC-SR04, el cual se conecta al microcontrolador mediante cuatro terminales.Asimismo, el sistema incluye tres diodos emisores de luz (LED) utilizados como indicadores visuales del rango de distancia detectado. Cada LED se conecta a un pin de salida digital del microcontrolador y se encuentra en serie con una resistencia de 200 Ω, cuya función es limitar la corriente que circula por el diodo para evitar su deterioro.
-![image.png](attachment:0b5bc234-7592-4767-b0f1-a7689a24dac0:b3a6b9ea-1ab6-4b94-be5d-215cd7247ad3.png)
+<img width="688" height="426" alt="image" src="https://github.com/user-attachments/assets/6ccbc779-8cfa-4669-8d35-0155c89208b1" />
