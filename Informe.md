@@ -61,17 +61,17 @@ Para la medición de distancia se emplea el sensor ultrasónico HC-SR04, el cual
 
 El sensor HC-SR04 mide el tiempo de retorno del eco, el microcontrolador Arduino calcula la distancia y clasifica el resultado en uno de los tres rangos definidos, activando el LED correspondiente para indicar visualmente la distancia detectada.
 
-![image.png](attachment:55d14427-39b7-492f-96c2-86a473d5cb49:image.png)
+<img width="328" height="609" alt="image" src="https://github.com/user-attachments/assets/4fed952b-da96-4e76-87c3-434cfd4fa0ec" />
 
 ### 2.4. Diagramas estructurales y de comportamiento
 
 El diagrama estructural muestra los componentes principales del sistema: el sensor ultrasónico HC-SR04 encargado de medir la distancia, el microcontrolador Arduino responsable del procesamiento de los datos y la clasificación del rango de distancia, y el sistema de LEDs que indica visualmente el resultado de la medición
 
-![image.png](attachment:fc50120e-af58-4028-8514-c83298df9544:image.png)
+<img width="304" height="396" alt="image" src="https://github.com/user-attachments/assets/56e4d8cb-8133-4553-9cb8-dce51ddc759e" />
 
 Diagrama de comportamiento del algoritmo de medición y clasificación de distancia.
 
-![image.png](attachment:9d83f4d3-9377-47a7-ae0c-d11901f77375:image.png)
+<img width="635" height="568" alt="image" src="https://github.com/user-attachments/assets/6b70d67b-002a-46f8-9819-664fafb7eb46" />
 
 # **3. Implementación**
 
