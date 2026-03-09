@@ -82,7 +82,7 @@ public:
     // Main controller update cycle
     void update() {
 
-        float distance = sensor->readDistanceFiltered();
+        float distance = sensor->readDistance();
 
         if (distance < 0) {
             return;
