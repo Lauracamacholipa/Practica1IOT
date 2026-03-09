@@ -51,6 +51,20 @@ public:
         return distance;
     }
 
+    // Filter distance using averaged sensor readings
+    float readDistanceFiltered() {
+
+        const int samples = 5;
+        float sum = 0;
+
+        for(int i = 0; i < samples; i++) {
+            sum += readDistance();
+            delay(10);
+        }
+
+        return sum / samples;
+    }
+
     // Get last measured distance
     float getLastDistance() {
         return lastDistance;
