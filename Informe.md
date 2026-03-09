@@ -57,6 +57,37 @@ El sistema electrónico fue representado mediante un diagrama esquemático elabo
 Para la medición de distancia se emplea el sensor ultrasónico HC-SR04, el cual se conecta al microcontrolador mediante cuatro terminales.Asimismo, el sistema incluye tres diodos emisores de luz (LED) utilizados como indicadores visuales del rango de distancia detectado. Cada LED se conecta a un pin de salida digital del microcontrolador y se encuentra en serie con una resistencia de 200 Ω, cuya función es limitar la corriente que circula por el diodo para evitar su deterioro.
 <img width="688" height="426" alt="image" src="https://github.com/user-attachments/assets/6ccbc779-8cfa-4669-8d35-0155c89208b1" />
 
+### 2.3. Diagrama de arquitectura del sistema
+
+El sensor HC-SR04 mide el tiempo de retorno del eco, el microcontrolador Arduino calcula la distancia y clasifica el resultado en uno de los tres rangos definidos, activando el LED correspondiente para indicar visualmente la distancia detectada.
+
+![image.png](attachment:55d14427-39b7-492f-96c2-86a473d5cb49:image.png)
+
+### 2.4. Diagramas estructurales y de comportamiento
+
+El diagrama estructural muestra los componentes principales del sistema: el sensor ultrasónico HC-SR04 encargado de medir la distancia, el microcontrolador Arduino responsable del procesamiento de los datos y la clasificación del rango de distancia, y el sistema de LEDs que indica visualmente el resultado de la medición
+
+![image.png](attachment:fc50120e-af58-4028-8514-c83298df9544:image.png)
+
+Diagrama de comportamiento del algoritmo de medición y clasificación de distancia.
+
+![image.png](attachment:9d83f4d3-9377-47a7-ae0c-d11901f77375:image.png)
+
+# **3. Implementación**
+
+El sistema fue implementado utilizando el microcontrolador Arduino y programado en el entorno **Arduino IDE**, empleando el lenguaje **C++**.
+
+El diseño del software se estructuró de manera modular mediante el uso de clases, separando las responsabilidades del sistema en los siguientes componentes:
+
+- **Clase `UltrasonicSensor`**: responsable de la lectura y filtrado de las mediciones del sensor ultrasónico.
+- **Clase `Led`**: encargada de controlar el encendido, apagado y parpadeo de los LEDs.
+- **Clase `DistanceController`**: implementa la lógica de clasificación de distancias y la activación de los actuadores.
+- **Archivo principal `main.ino`**: inicializa el sistema y ejecuta el ciclo principal de control.
+
+Durante la ejecución del programa, el microcontrolador realiza lecturas periódicas del sensor ultrasónico, calcula la distancia al objeto y clasifica el valor obtenido dentro de los rangos definidos. En función del rango detectado, el sistema activa el LED correspondiente para indicar visualmente la distancia medida.
+
+El código fuente completo del proyecto se encuentra disponible en el repositorio del proyecto.
+
 # **4. Pruebas y Validaciones**
 
 ## 4.1. Objetivo de las pruebas
