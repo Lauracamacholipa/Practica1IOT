@@ -18,11 +18,11 @@
 
 ## 1.1. Requerimientos funcionales
 
-**RF01:** El sistema será capaz de medir la distancia entre el sensor ultrasónico y un objeto ubicado frente a él dentro del rango de 2 cm a 200 cm.
+**RF01:** El sistema será capaz de medir la distancia entre el sensor ultrasónico y un objeto ubicado frente a él dentro del rango de 2 cm a 150 cm.
 
-**RF02:** El sistema será capaz de clasificar correctamente la distancia medida en tres rangos definidos (<30 cm, 30–100 cm y ≥100 cm) con una precisión mínima del 90%.
+**RF02:** El sistema será capaz de clasificar correctamente la distancia medida en tres rangos definidos (<30 cm, 30–100 cm y ≥100 cm).
 
-**RF03:** El sistema será capaz de activar el LED correspondiente al rango de distancia detectado con una tasa de activación correcta mínima del 95%.
+**RF03:** El sistema será capaz de activar el LED correspondiente al rango de distancia detectado.
 
 | <30 cm | LED Rojo |
 | --- | --- |
@@ -124,6 +124,7 @@ Durante las pruebas se obtuvieron las siguientes mediciones experimentales.
 
 <img width="572" height="667" alt="image" src="https://github.com/user-attachments/assets/5d00a24b-34cf-449c-8a74-93bc0713eeb3" />
 
+Durante las pruebas iniciales se intentó utilizar a los propios integrantes del equipo como objetos de referencia frente al sensor ultrasónico. Sin embargo, se observó que las mediciones no eran estables debido a que el material textil de la ropa absorbía parcialmente la onda ultrasónica o generaba reflexiones irregulares. Como resultado, el eco recibido por el sensor no era consistente. Por esta razón, se decidió utilizar objetos sólidos y superficies más uniformes durante las mediciones experimentales para garantizar mayor precisión en los resultados
 
 # **5. Resultados**
 
@@ -166,6 +167,7 @@ A partir de los resultados obtenidos durante las pruebas del sistema, se propone
 - Asegurar una correcta alineación del sensor con el objeto medido, ya que superficies inclinadas o irregulares pueden afectar la precisión de la medición.
 - Evitar obstáculos o interferencias cercanas al sensor, debido a que pueden generar reflexiones adicionales de la señal ultrasónica y afectar los resultados.
 - Considerar el uso de sensores de mayor precisión o mayor rango de medición en aplicaciones donde se requiera una exactitud más alta.
+- Utilizar objetos con superficies sólidas y relativamente lisas durante las mediciones, ya que materiales blandos o textiles pueden absorber parcialmente la onda ultrasónica o dispersar el eco, reduciendo la estabilidad y precisión de las lecturas del sensor.
 
 Estas recomendaciones pueden contribuir a mejorar la estabilidad, precisión y confiabilidad del sistema en aplicaciones futuras.
 
