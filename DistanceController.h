@@ -22,6 +22,39 @@ private:
 
 public:
 
+    // Print measured distance to serial monitor
+    void logDistance(float distance) {
+        Serial.print("Distance: ");
+        Serial.print(distance);
+        Serial.println(" cm");
+    }
+
+    // Blink selected LED and disable the others
+    void blinkLed(Led* activeLed, Led* ledOff1, Led* ledOff2, int delayTime, const char* label) {
+
+        ledOff1->off();
+        ledOff2->off();
+
+        Serial.println(label);
+
+        activeLed->toggle();
+        delay(delayTime);
+    }
+
+    // Select LED behavior based on measured distance
+    void updateLeds(float distance) {
+
+        if (distance < DIST_NEAR) {
+            blinkLed(redLed, yellowLed, greenLed, 200, "RED LED");
+        }
+        else if (distance < DIST_MEDIUM) {
+            blinkLed(yellowLed, redLed, greenLed, 400, "YELLOW LED");
+        }
+        else {
+            blinkLed(greenLed, redLed, yellowLed, 700, "GREEN LED");
+        }
+    }
+
     // Constructor
     DistanceController(UltrasonicSensor* sensor,
                        Led* red,
@@ -36,7 +69,7 @@ public:
         lastDistance = 0;
     }
 
-    // Initialize system
+    // Initialize sensor and LED hardware
     void init() {
 
         sensor->init();
@@ -46,7 +79,7 @@ public:
         greenLed->init();
     }
 
-    // Update system state
+    // Main controller update cycle
     void update() {
 
         float distance = sensor->readDistanceFiltered();
@@ -57,38 +90,12 @@ public:
 
         lastDistance = distance;
 
-        Serial.print("Distance: ");
-        Serial.print(distance);
-        Serial.println(" cm");
+        logDistance(distance);
 
-        // Turn off all LEDs first
-        redLed->off();
-        yellowLed->off();
-        greenLed->off();
-
-        if (distance < DIST_NEAR) {
-            Serial.println("RED LED");
-
-            redLed->toggle();
-            delay(200);
-        }
-        else if (distance >= DIST_NEAR && distance < DIST_MEDIUM) {
-
-            Serial.println("YELLOW LED");
-
-            yellowLed->toggle();
-            delay(400);
-
-        }
-        else {
-
-            Serial.println("GREEN LED");
-
-            greenLed->toggle();
-            delay(700);
-        }
+        updateLeds(distance);
     }
 
+    // Return last measured distance
     float getLastDistance() {
         return lastDistance;
     }
