@@ -49,7 +49,7 @@ public:
     // Update system state
     void update() {
 
-        float distance = sensor->readDistance();
+        float distance = sensor->readDistanceFiltered();
 
         if (distance < 0) {
             return;
