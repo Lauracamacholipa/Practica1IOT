@@ -42,34 +42,40 @@
 **RNF04:** El sistema deberá operar de forma estable durante sesiones de funcionamiento continuo de al menos 10 minutos sin presentar bloqueos o reinicios del microcontrolador.
 
 # **2. Diseño del Sistema**
-
 ### 2.1. Diagrama de bloques
+El sistema está diseñado siguiendo un enfoque orientado a objetos y se compone de tres clases principales: **Led**, **UltrasonicSensor** y **DistanceController**. La clase **Led** se encarga de controlar el comportamiento de un diodo LED conectado al microcontrolador, almacenando el pin al que está conectado y su estado actual. Proporciona métodos para inicializar el LED, encenderlo, apagarlo, cambiar su estado y consultar si se encuentra activo. Por otro lado, la clase **UltrasonicSensor** gestiona el funcionamiento del sensor ultrasónico, incluyendo la configuración de los pines *trigger* y *echo*, la inicialización del sensor y la lectura de la distancia medida, almacenando el último valor obtenido.
+
+La clase **DistanceController** actúa como el componente central del sistema, coordinando la interacción entre el sensor ultrasónico y los LEDs. Esta clase mantiene referencias a un objeto **UltrasonicSensor** y a tres objetos **Led** (rojo, amarillo y verde), utilizando la distancia medida para actualizar el estado de los LEDs según la proximidad detectada. Además, incluye métodos para inicializar el sistema, actualizar las mediciones, registrar la distancia y controlar el comportamiento de los LEDs. Esta estructura modular permite separar responsabilidades, facilitando la organización, mantenimiento y escalabilidad del sistema.
+<img width="862" height="354" alt="Practica1IOT drawio" src="https://github.com/user-attachments/assets/041e236a-25bc-46bb-ac90-253dcfde1464" />
+
+
+### 2.2. Diagrama de bloques
 
 El diagrama de bloques muestra la interacción general entre los componentes principales del sistema, incluyendo el sensor ultrasónico, el microcontrolador y los actuadores representados por los LEDs.
 
 <img width="755" height="130" alt="image" src="https://github.com/user-attachments/assets/363688c5-c026-4bce-a089-12b08382de92" />
 
 
-### 2.2. Diagrama de circuito
+### 2.3. Diagrama de circuito
 
 El sistema electrónico fue representado mediante un diagrama esquemático elaborado en el software KiCad, donde se muestran las interconexiones entre el microcontrolador, el sensor ultrasónico y los elementos de señalización visual. El núcleo del circuito está constituido por el módulo ESP32-WROOM-32, el cual actúa como unidad de procesamiento y control del sistema.
 
 Para la medición de distancia se emplea el sensor ultrasónico HC-SR04, el cual se conecta al microcontrolador mediante cuatro terminales.Asimismo, el sistema incluye tres diodos emisores de luz (LED) utilizados como indicadores visuales del rango de distancia detectado. Cada LED se conecta a un pin de salida digital del microcontrolador y se encuentra en serie con una resistencia de 200 Ω, cuya función es limitar la corriente que circula por el diodo para evitar su deterioro.
 <img width="688" height="426" alt="image" src="https://github.com/user-attachments/assets/6ccbc779-8cfa-4669-8d35-0155c89208b1" />
 
-### 2.3. Diagrama de arquitectura del sistema
+### 2.4. Diagrama de arquitectura del sistema
 
 El sensor HC-SR04 mide el tiempo de retorno del eco, el microcontrolador Arduino calcula la distancia y clasifica el resultado en uno de los tres rangos definidos, activando el LED correspondiente para indicar visualmente la distancia detectada.
 
 <img width="328" height="609" alt="image" src="https://github.com/user-attachments/assets/4fed952b-da96-4e76-87c3-434cfd4fa0ec" />
 
-### 2.4. Diagramas estructurales y de comportamiento
+### 2.5. Diagramas estructurales y de comportamiento
 
 El diagrama estructural muestra los componentes principales del sistema: el sensor ultrasónico HC-SR04 encargado de medir la distancia, el microcontrolador Arduino responsable del procesamiento de los datos y la clasificación del rango de distancia, y el sistema de LEDs que indica visualmente el resultado de la medición
 
 <img width="304" height="396" alt="image" src="https://github.com/user-attachments/assets/56e4d8cb-8133-4553-9cb8-dce51ddc759e" />
 
-Diagrama de comportamiento del algoritmo de medición y clasificación de distancia.
+### 2.6. Diagrama de comportamiento del algoritmo de medición y clasificación de distancia.
 
 <img width="635" height="568" alt="image" src="https://github.com/user-attachments/assets/6b70d67b-002a-46f8-9819-664fafb7eb46" />
 
